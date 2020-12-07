@@ -1,0 +1,96 @@
+package com.company;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MyFrame extends JFrame{
+
+    private GridBagConstraints constraints;
+
+    public MyFrame()
+    {
+        super(":)");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new GridBagLayout());
+        setSize(740,480);
+        constraints = new GridBagConstraints();
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.weightx = 1;
+
+        constraints.gridx = 0;
+        constraints.insets = new Insets(0,0,0,0);
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        JTextArea text = new JTextArea(5, 45);
+        add(text, constraints);
+
+
+
+
+        constraints.gridwidth = 1;
+        constraints.gridy = 0;
+        constraints.insets.bottom = 200;
+        JMenu redact = new JMenu("Редактировать");
+        JMenu font = new JMenu("Шрифт");
+        JMenuItem tnr = new JMenuItem("Times New Roman");
+        tnr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+            }
+        });
+        JMenuItem ms = new JMenuItem("MS Sans Serif");
+        ms.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+            }
+        });
+        JMenuItem cn = new JMenuItem("Courier New");
+        cn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setFont(new Font("Courier New", Font.PLAIN, 14));
+            }
+        });
+        font.add(tnr); font.add(ms); font.add(cn);
+
+
+        JMenu color = new JMenu("Цвет");
+        JMenuItem blue = new JMenuItem("Синий");
+        blue.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setForeground(Color.BLUE);
+            }
+        });
+        JMenuItem red = new JMenuItem("Красный");
+        red.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setForeground(Color.RED);
+            }
+        });
+        JMenuItem green = new JMenuItem("Зеленый");
+        green.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text.setForeground(Color.GREEN);
+            }
+        });
+        color.add(blue); color.add(red); color.add(green);
+
+        redact.add(font); redact.add(color);
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(redact);
+
+        add(menuBar, constraints);
+
+        setVisible(true);
+    }
+}
